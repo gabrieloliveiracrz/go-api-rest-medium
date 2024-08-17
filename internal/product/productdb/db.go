@@ -1,10 +1,14 @@
-package main
+package productdb
 
-import "fmt"
+import (
+	"fmt"
 
-var memoryDb map[string]*Product
+	"github.com/gabrieloliveiracrz/go-api-rest-medium/internal/product/productmain/productentities"
+)
 
-func BuildDb() {
+var Memory map[string]*productentities.Product
+
+func Build() {
 	startProducts := make(map[string]string)
 	startProducts["Camisa do Grêmio"] = "clothing"
 	startProducts["Capim Dourado"] = "plant"
@@ -13,12 +17,12 @@ func BuildDb() {
 	startProducts["Bandana Dazaranha"] = "clothing"
 	startProducts["Motul 5w40"] = "oil"
 
-	memoryDb = make(map[string]*Product)
+	Memory = make(map[string]*productentities.Product)
 
 	i := 0
 	for product, productType := range startProducts {
 		id := fmt.Sprintf("%d", i)
-		memoryDb[id] = &Product{
+		Memory[id] = &productentities.Product{
 			ID:       id,
 			Name:     product,
 			Type:     productType,
